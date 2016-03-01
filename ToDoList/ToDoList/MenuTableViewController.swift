@@ -30,6 +30,7 @@ class MenuTableViewController: UITableViewController {
         let button: UISwitch = sender as! UISwitch
         button.enabled = false
     }
+    
     override func viewDidAppear(animated: Bool) {
         let userDefaults = NSUserDefaults.standardUserDefaults()
         let userTaskList: NSMutableArray? = userDefaults.objectForKey("taskList") as? NSMutableArray
@@ -97,6 +98,7 @@ class MenuTableViewController: UITableViewController {
             viewDidAppear(true)
             
         }
+        
     }
 
     /*

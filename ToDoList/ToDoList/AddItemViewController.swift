@@ -10,6 +10,9 @@ import UIKit
 
 class AddItemViewController: UIViewController {
 
+    @IBOutlet var taskName: UITextField!
+    @IBOutlet var taskDescription: UITextView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -21,6 +24,33 @@ class AddItemViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    
+    @IBAction func doneButton(sender: AnyObject) {
+        let userDefaults = NSUserDefaults.standardUserDefaults()
+        var taskList: NSMutableArray? = userDefaults.objectForKey("taskList") as? NSMutableArray
+        
+        let data = NSMutableDictionary()
+        data.setObject(taskName.text!, forKey: "taskName")
+        data.setObject(taskDescription.text, forKey: "taskDescrip")
+        
+        if(taskList != nil){
+            let newMutableList: NSMutableArray = NSMutableArray()
+            for dict:AnyObject in taskList! {
+                newMutableList.addObject(dict as! NSDictionary)
+            }
+            userDefaults.removeObjectForKey("taskList")
+            newMutableList.addObject(data)
+            userDefaults.setObject(newMutableList, forKey: "taskList")
+        } else {
+            userDefaults.removeObjectForKey("taskList")
+            taskList = NSMutableArray()
+            taskList!.addObject(data)
+            userDefaults.setObject(taskList, forKey: "taskList")
+        }
+        
+        userDefaults.synchronize()
+        self.navigationController?.popToRootViewControllerAnimated(true)
+    }
 
     /*
     // MARK: - Navigation
