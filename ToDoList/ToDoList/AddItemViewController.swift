@@ -32,6 +32,7 @@ class AddItemViewController: UIViewController {
         let data = NSMutableDictionary()
         data.setObject(taskName.text!, forKey: "taskName")
         data.setObject(taskDescription.text, forKey: "taskDescrip")
+        data.setObject(false, forKey: "taskCompleted")
         
         if(taskList != nil){
             let newMutableList: NSMutableArray = NSMutableArray()

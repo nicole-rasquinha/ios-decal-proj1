@@ -16,7 +16,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationLevel="5" indentationWidth="10" reuseIdentifier="Cell" id="XXj-gY-TVR">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationLevel="5" indentationWidth="10" reuseIdentifier="Cell" id="XXj-gY-TVR" customClass="ToDoTableViewCell" customModule="ToDoList" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" tableViewCell="XXj-gY-TVR" id="lWR-Lz-XGe">
@@ -27,11 +27,13 @@
                                             <rect key="frame" x="8" y="6" width="51" height="31"/>
                                             <connections>
                                                 <action selector="toggleComplete:" destination="Ytt-2V-udL" eventType="valueChanged" id="AEA-Kd-BUb"/>
+                                                <action selector="toggleComplete:" destination="XXj-gY-TVR" eventType="valueChanged" id="ZVI-NJ-K1c"/>
                                             </connections>
                                         </switch>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="completeSwitch" destination="2eH-WZ-qcL" id="Oae-09-EgR"/>
                                     <segue destination="kMm-0X-Oon" kind="show" identifier="showInfo" id="QAZ-Ny-B1t"/>
                                 </connections>
                             </tableViewCell>
@@ -115,7 +117,6 @@
         <!--Add Item View Controller-->
         <scene sceneID="H31-8O-ozQ">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ToG-i6-iml" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="cuX-lu-nQC" customClass="AddItemViewController" customModule="ToDoList" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Sb1-gb-6Gz"/>
@@ -133,7 +134,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Task Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fn9-LL-gfa">
                                 <rect key="frame" x="131" y="134" width="90" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" text="Add description here" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="HdN-P2-z0A">
@@ -145,7 +146,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Task Description:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SHZ-jU-nX4">
                                 <rect key="frame" x="131" y="251" width="133" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -178,6 +179,7 @@
                         <outlet property="taskName" destination="yW2-rv-tHS" id="jpd-aO-XJw"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ToG-i6-iml" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1952" y="294"/>
         </scene>
@@ -202,7 +204,6 @@
         <!--Description View Controller-->
         <scene sceneID="cd6-Up-yh3">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Bqf-H3-hiJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="kMm-0X-Oon" customClass="DescriptionViewController" customModule="ToDoList" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="SIe-Qr-RKb"/>
@@ -220,7 +221,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Task Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="586-Qp-2ou">
                                 <rect key="frame" x="131" y="134" width="90" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" text="Add description here" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ywf-XL-Os0">
@@ -232,7 +233,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Task Description:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9nx-U4-3f5">
                                 <rect key="frame" x="131" y="251" width="133" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -268,6 +269,7 @@
                         <outlet property="taskName" destination="llj-Oi-2LM" id="FHN-pB-LJe"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Bqf-H3-hiJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1719" y="1034"/>
         </scene>

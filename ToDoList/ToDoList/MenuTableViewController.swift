@@ -24,11 +24,14 @@ class MenuTableViewController: UITableViewController {
     }
     
     @IBAction func toggleComplete(sender: AnyObject) {
-        //let time:NSTimeInterval = sender.timestamp
-        
         numComplete++
-        let button: UISwitch = sender as! UISwitch
-        button.enabled = false
+        NSTimer.scheduledTimerWithTimeInterval(86400.1, target: self, selector: "deleteItem", userInfo: nil, repeats: false)
+        //NSTimer.scheduledTimerWithTimeInterval(5.1, target: self, selector: "deleteItem", userInfo: nil, repeats: false)
+    }
+    
+    func deleteItem(){
+        numComplete--
+        viewDidAppear(true)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -62,10 +65,19 @@ class MenuTableViewController: UITableViewController {
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! ToDoTableViewCell
+        cell.row = indexPath.row
 
         let task: NSMutableDictionary = taskList.objectAtIndex(indexPath.row) as! NSMutableDictionary
         cell.textLabel?.text = task.objectForKey("taskName") as? String
+        
+        if (task.objectForKey("taskCompleted") as! Bool){
+            cell.completeSwitch.setOn(true, animated: false)
+            cell.completeSwitch.enabled = false
+        } else {
+            cell.completeSwitch.setOn(false, animated: false)
+            cell.completeSwitch.enabled = true
+        }
 
         return cell
     }
@@ -82,11 +94,12 @@ class MenuTableViewController: UITableViewController {
     // Override to support editing the table view.
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == UITableViewCellEditingStyle.Delete {
+            
             // Delete the row from the data source
             let userDefaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
-            let taskList: NSMutableArray = userDefaults.objectForKey("taskList") as! NSMutableArray
+            let userTaskList: NSMutableArray = userDefaults.objectForKey("taskList") as! NSMutableArray
             let newMutableList: NSMutableArray = NSMutableArray()
-            for dict:AnyObject in taskList {
+            for dict:AnyObject in userTaskList {
                 newMutableList.addObject(dict as! NSDictionary)
             }
             newMutableList.removeObjectAtIndex(indexPath.row)
